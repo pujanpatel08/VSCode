@@ -14,7 +14,6 @@ public class CountE {
 		
 		System.out.println(countEs(list));
 
-		
 	}
 	
 	public static int countEs(ArrayList<String> list) {
