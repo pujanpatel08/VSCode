@@ -9,7 +9,7 @@ public class CountE {
 		ArrayList<String> list = new ArrayList<>();
 		list.add("Patel");
 		list.add("Peter");
-		list.add("Miles");
+		list.add("Injure");
 		list.add("Table");
 		
 		
