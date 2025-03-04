@@ -12,7 +12,6 @@ public class CountE {
 		list.add("Injure");
 		list.add("Table");
 		
-		
 		System.out.println(countEs(list));
 
 	}
