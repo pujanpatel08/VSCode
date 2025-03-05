@@ -1,4 +1,4 @@
-package JavaProjects.src.CS1114.Strings;
+package JavaProjects.CS1114.Strings;
 
 public class Chars {
 

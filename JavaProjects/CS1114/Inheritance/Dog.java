@@ -1,4 +1,4 @@
-package JavaProjects.src.CS1114.Inheritance;
+package JavaProjects.CS1114.Inheritance;
 
 public class Dog extends Animal {
 	

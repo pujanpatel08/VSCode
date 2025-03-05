@@ -1,4 +1,4 @@
-package JavaProjects.src.CS1114.Practice;
+package JavaProjects.CS1114.Practice;
 
 import java.util.HashMap;
 import java.util.Map;

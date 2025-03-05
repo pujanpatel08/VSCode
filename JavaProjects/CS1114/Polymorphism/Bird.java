@@ -1,4 +1,4 @@
- package JavaProjects.src.CS1114.Polymorphism;
+ package JavaProjects.CS1114.Polymorphism;
 
 public class Bird {
 	

@@ -1,4 +1,4 @@
-package JavaProjects.src.CS1114.EnhancedForLoops;
+package JavaProjects.CS1114.EnhancedForLoops;
 
 import java.util.ArrayList;
 
