@@ -1,4 +1,4 @@
-package JavaProjects.PersonalProjects.FlappyBird;
+package PersonalProjects.FlappyBird;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -77,10 +77,10 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
         addKeyListener(this);
 
         //Load Images
-        backgroundImage = new ImageIcon("JavaProjects/PersonalProjects/FlappyBird/Images/flappybirdbg.png").getImage();
-        birdImage = new ImageIcon("JavaProjects/PersonalProjects/FlappyBird/Images/flappybird.png").getImage();
-        topPipeImage = new ImageIcon("JavaProjects/PersonalProjects/FlappyBird/Images/toppipe.png").getImage();
-        bottomPipeImage = new ImageIcon("JavaProjects/PersonalProjects/FlappyBird/Images/bottompipe.png").getImage();
+        backgroundImage = new ImageIcon("PersonalProjects/FlappyBird/Images/flappybirdbg.png").getImage();
+        birdImage = new ImageIcon("PersonalProjects/FlappyBird/Images/flappybird.png").getImage();
+        topPipeImage = new ImageIcon("PersonalProjects/FlappyBird/Images/toppipe.png").getImage();
+        bottomPipeImage = new ImageIcon("PersonalProjects/FlappyBird/Images/bottompipe.png").getImage();
 
         //bird
         bird = new Bird(birdImage);
