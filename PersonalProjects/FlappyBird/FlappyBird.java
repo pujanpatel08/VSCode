@@ -1,4 +1,4 @@
-package JavaProjects.src.PersonalProjects.FlappyBird;
+package PersonalProjects.FlappyBird;
 
 import java.awt.*;
 import java.awt.event.*;
