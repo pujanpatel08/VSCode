@@ -39,10 +39,10 @@ class Stack<T> {
 
 public class Stacks {
     public static void main(String[] args) {
-        Stack<Integer> stack = new Stack<>();
-        stack.push(10);
-        stack.push(20);
-        stack.push(30);
+        Stack<String> stack = new Stack<>();
+        stack.push("1000");
+        stack.push("2000");
+        stack.push("3000");
         System.out.println("Top value: " + stack.peek());
         stack.display();
         System.out.println("Popped: " + stack.pop());
