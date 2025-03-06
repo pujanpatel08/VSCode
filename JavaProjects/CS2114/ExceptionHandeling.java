@@ -18,9 +18,7 @@ public class ExceptionHandeling {
             System.out.println("Exception caught: Cannot divide by zero!");
         } catch (CustomException e) {
             System.out.println("Custom exception: " + e.getMessage());
-        } finally {
-            System.out.println("Finally block executed.");
-        }
+        } 
 
         System.out.println("Program continues...");
     }
@@ -32,4 +30,3 @@ public class ExceptionHandeling {
         return a / b;
     }
 }
-
