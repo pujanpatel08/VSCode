@@ -1,6 +1,4 @@
 package JavaProjects.CS2114;
-// Demonstrates a stack using a linked list.
-
 class Stack<T> {
     private Node<T> top;
 
@@ -11,28 +9,31 @@ class Stack<T> {
     }
 
     public T pop() {
-        if (top == null) {
-            throw new RuntimeException("Stack underflow");
+        try {
+            T data = top.data;
+            top = top.next;
+            return data;
+        } catch (RuntimeException e) {
+            System.out.println("RuntimeException Stack underflow: " + e.getMessage());
         }
-        T data = top.data;
-        top = top.next;
-        return data;
+        return (T)"Nothing left to pop"; 
     }
 
     public T peek() {
         if (top != null) {
             return top.data;
         }
-        return null; // or throw an exception if the stack is empty
+        return (T)"Nothing left to peek"; 
     }    
 
     public void display() {
         Node<T> current = top;
+        System.out.print("Display: ");
         while (current != null) {
             System.out.print(current.data + " -> ");
             current = current.next;
         }
-        System.out.println("null");
+        System.out.println("Nothing Left");
     }
 }
 
