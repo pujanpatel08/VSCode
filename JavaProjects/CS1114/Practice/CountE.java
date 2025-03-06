@@ -8,7 +8,7 @@ public class CountE {
 		// TODO Auto-generated method stub
 		ArrayList<String> list = new ArrayList<>();
 		list.add("Patel");
-		list.add("Accelerate");
+		list.add("Celebrate");
 		list.add("Injure");
 		list.add("Table");
 		
