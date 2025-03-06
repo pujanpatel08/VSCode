@@ -49,4 +49,3 @@ public class Stacks {
         stack.display();
     }
 }
-
