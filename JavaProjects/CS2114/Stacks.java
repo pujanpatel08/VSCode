@@ -8,6 +8,7 @@ class Stack<T> {
         top = newNode;
     }
 
+    @SuppressWarnings("unchecked")
     public T pop() {
         try {
             T data = top.data;
@@ -19,6 +20,7 @@ class Stack<T> {
         return (T)"Nothing left to pop"; 
     }
 
+    @SuppressWarnings("unchecked")
     public T peek() {
         if (top != null) {
             return top.data;
