@@ -26,7 +26,7 @@ class Cat extends Animal {
     }
 }
 
-public class PolymorphismDemo {
+public class Polymorphism {
     // Method Overloading (compile-time polymorphism)
     void display(String message) {
         System.out.println("Message: " + message);
@@ -45,7 +45,7 @@ public class PolymorphismDemo {
         myAnimal2.makeSound(); // Calls Cat's overridden method
 
         // Demonstrating method overloading
-        PolymorphismDemo demo = new PolymorphismDemo();
+        Polymorphism demo = new Polymorphism();
         demo.display("Hello, world!");
         demo.display(100);
     }
