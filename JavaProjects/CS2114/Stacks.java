@@ -10,13 +10,14 @@ class Stack<T> {
 
     @SuppressWarnings("unchecked")
     public T pop() {
-        if (top == null) {
-            System.out.println("Stack underflow");
-            return (T)"Nothing left to pop"; 
+        try {
+            T data = top.data;
+            top = top.next;
+            return data;
+        } catch (RuntimeException e) {
+            System.out.println("RuntimeException Stack underflow: " + e.getMessage());
         }
-        T data = top.data;
-        top = top.next;
-        return data;
+        return (T)"Nothing left to pop"; 
     }
 
     @SuppressWarnings("unchecked")
