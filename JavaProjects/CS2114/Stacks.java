@@ -38,15 +38,14 @@ class Stack<T> {
         System.out.println("Nothing Left");
     }
 }
-
 public class Stacks {
     public static void main(String[] args) {
         Stack<String> stack = new Stack<>();
         stack.push("1000");
         stack.push("2000");
         stack.push("3000");
-        System.out.println("Top value: " + stack.peek());
         stack.display();
+        System.out.println("Top value: " + stack.peek());
         System.out.println("Popped: " + stack.pop());
         stack.display();
     }
