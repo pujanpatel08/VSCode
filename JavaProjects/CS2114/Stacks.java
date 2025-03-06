@@ -1,6 +1,4 @@
 package JavaProjects.CS2114;
-
-// StackDemo.java
 // Demonstrates a stack using a linked list.
 
 class Stack<T> {
@@ -21,6 +19,13 @@ class Stack<T> {
         return data;
     }
 
+    public T peek() {
+        if (top != null) {
+            return top.data;
+        }
+        return null; // or throw an exception if the stack is empty
+    }    
+
     public void display() {
         Node<T> current = top;
         while (current != null) {
@@ -37,6 +42,7 @@ public class Stacks {
         stack.push(10);
         stack.push(20);
         stack.push(30);
+        System.out.println("Top value: " + stack.peek());
         stack.display();
         System.out.println("Popped: " + stack.pop());
         stack.display();
