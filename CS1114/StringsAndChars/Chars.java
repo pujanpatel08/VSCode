@@ -1,4 +1,4 @@
-package CS1114.Strings;
+package CS1114.StringsAndChars;
 
 public class Chars {
 
