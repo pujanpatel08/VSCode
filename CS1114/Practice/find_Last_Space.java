@@ -1,6 +1,6 @@
 package CS1114.Practice;
 
-public class findLastSpace {
+public class find_Last_Space {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

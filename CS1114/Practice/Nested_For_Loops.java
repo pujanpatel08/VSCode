@@ -1,6 +1,6 @@
 package CS1114.Practice;
 
-public class NestedForLoops {
+public class Nested_For_Loops {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

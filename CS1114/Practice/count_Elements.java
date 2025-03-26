@@ -1,10 +1,10 @@
 package CS1114.Practice;
 
-public class countElements {
+public class count_Elements {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		countElements count = new countElements();
+		count_Elements count = new count_Elements();
 		System.out.println(count.countElements(null, 0));
 
 	}

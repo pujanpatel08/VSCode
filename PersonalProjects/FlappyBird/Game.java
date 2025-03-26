@@ -13,7 +13,7 @@ public class Game {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(boardWidth, boardHeight);
 
-        FlappyBird flappyBird = new FlappyBird();
+        Flappy_Bird flappyBird = new Flappy_Bird();
         frame.add(flappyBird);
         frame.pack();
         flappyBird.requestFocus();

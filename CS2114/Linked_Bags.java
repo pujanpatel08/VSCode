@@ -44,7 +44,7 @@ class LinkedBag<T> {
     }
 }
 
-public class LinkedBags {
+public class Linked_Bags {
     public static void main(String[] args) {
         LinkedBag<String> bag = new LinkedBag<>();
         bag.add("Apple");

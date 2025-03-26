@@ -3,7 +3,7 @@ package CS1114.Practice;
 import java.util.List;
 import java.util.Map;
 
-public class MapsQ2 {
+public class Maps_Q2 {
 
 
 	public static void main(String[] args) {

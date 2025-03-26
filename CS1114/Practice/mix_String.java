@@ -1,6 +1,6 @@
 package CS1114.Practice;
 
-public class mixString {
+public class mix_String {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

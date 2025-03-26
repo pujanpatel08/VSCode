@@ -1,6 +1,6 @@
 package CS1114.Practice;
 
-public class xyzThere {
+public class xyz_There {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -8,7 +8,7 @@ public class xyzThere {
 
 	}
 	
-	public boolean xyzThere(String str)
+	public boolean xyz_There(String str)
 	{
 	    for (int i = 0; i <= str.length() - 3; i++) {
 	        if (str.substring(i, i + 3).equals("xyz")) {

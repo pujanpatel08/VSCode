@@ -3,7 +3,7 @@ package CS1114.Practice;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MapsQ3 {
+public class Maps_Q3 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

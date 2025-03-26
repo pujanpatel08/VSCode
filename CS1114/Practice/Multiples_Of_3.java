@@ -1,6 +1,6 @@
 package CS1114.Practice;
 
-public class MultiplesOf3 {
+public class Multiples_Of_3 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

@@ -3,7 +3,7 @@ package CS2114;
 /**
  * LinkedListExample - A simple implementation of a singly linked list in Java.
  */
-public class LinkedList {
+public class Linked_List {
 
     // Node class representing each element in the linked list
     static class Node {
@@ -60,7 +60,7 @@ public class LinkedList {
     }
 
     public static void main(String[] args) {
-        LinkedList list = new LinkedList();
+        Linked_List list = new Linked_List();
         list.insert(10);
         list.insert(20);
         list.insert(30);

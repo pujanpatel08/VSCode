@@ -1,6 +1,6 @@
 package CS1114.Practice;
 
-public class repeatEnd {
+public class repeat_End {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

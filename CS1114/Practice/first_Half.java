@@ -1,6 +1,6 @@
 package CS1114.Practice;
 
-public class firstHalf {
+public class first_Half {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

@@ -9,7 +9,7 @@ import java.util.InputMismatchException;
 /**
  * This class demonstrates exception handling in Java, including checked and unchecked exceptions.
  */
-public class ExceptionHandling {
+public class Exception_Handling {
     
     /**
      * Demonstrates handling different types of exceptions.

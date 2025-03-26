@@ -13,7 +13,7 @@ class Monkey {
 	
 }
 
-public class MonkeyArray {
+public class Monkey_Array {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

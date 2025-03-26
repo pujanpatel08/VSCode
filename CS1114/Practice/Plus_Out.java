@@ -1,6 +1,6 @@
 package CS1114.Practice;
 
-public class PlusOut {
+public class Plus_Out {
 
 	public static void main(String[] args) {
 		System.out.println(plusOut("12xxx34", "xxx"));

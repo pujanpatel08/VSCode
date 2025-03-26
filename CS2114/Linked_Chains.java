@@ -32,7 +32,7 @@ class LinkedChain<T> {
     }
 }
 
-public class LinkedChains {
+public class Linked_Chains {
     public static void main(String[] args) {
         LinkedChain<Integer> chain = new LinkedChain<>();
         chain.add(10);

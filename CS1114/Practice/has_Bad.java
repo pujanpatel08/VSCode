@@ -1,6 +1,6 @@
 package CS1114.Practice;
 
-public class hasBad {
+public class has_Bad {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

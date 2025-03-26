@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.*;
 
-public class FlappyBird extends JPanel implements ActionListener, KeyListener {
+public class Flappy_Bird extends JPanel implements ActionListener, KeyListener {
     int boardWidth = 360;
     int boardHeight = 640;
 
@@ -70,7 +70,7 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
 
     double score = 0;
 
-    FlappyBird() {
+    Flappy_Bird() {
         setPreferredSize(new Dimension(boardWidth, boardHeight));
         setBackground(Color.blue);
         setFocusable(true);

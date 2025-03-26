@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
 
-public class RPSGUIGameJava extends JFrame implements ActionListener {
+public class RPS_GUI_Game extends JFrame implements ActionListener {
     // Variables to track the player's and bot's scores
     private int playerScore = 0;
     private int botScore = 0;
@@ -17,7 +17,7 @@ public class RPSGUIGameJava extends JFrame implements ActionListener {
     private JButton rockButton, paperButton, scissorsButton;
     private JLabel resultLabel, scoreLabel, roundsLabel;
     
-    public RPSGUIGameJava() {
+    public RPS_GUI_Game() {
         // Set up the frame
         setTitle("Rock Paper Scissors - Best of 7");
         setSize(280, 250);
@@ -162,7 +162,7 @@ public class RPSGUIGameJava extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-        new RPSGUIGameJava();
+        new RPS_GUI_Game();
     }
     
 }

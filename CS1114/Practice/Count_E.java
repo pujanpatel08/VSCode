@@ -2,7 +2,7 @@ package CS1114.Practice;
 
 import java.util.ArrayList;
 
-public class CountE {
+public class Count_E {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.swing.Box;
 
-public class BoxPractice {
+public class Box_Practice {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
