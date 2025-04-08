@@ -53,7 +53,6 @@ public class Stacks {
 }
 
 class Node<T> {
-    private Node<T> top;
     Node<T> next;
     T data;
 
