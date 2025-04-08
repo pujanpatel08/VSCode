@@ -51,3 +51,14 @@ public class Stacks {
         stack.display();
     }
 }
+
+class Node<T> {
+    private Node<T> top;
+    Node<T> next;
+    T data;
+
+    public Node(T data) {
+        this.data = data;
+        this.next = null;
+    }
+}
