@@ -1,4 +1,4 @@
-package PersonalProjects.RPSGame;
+package PersonalProjects.JavaProjects.RPSGame;
 
 import javax.swing.*;
 import java.awt.*;

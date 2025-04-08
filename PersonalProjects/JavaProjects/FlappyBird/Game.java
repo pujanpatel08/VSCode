@@ -1,4 +1,4 @@
-package PersonalProjects.FlappyBird;
+package PersonalProjects.JavaProjects.FlappyBird;
 
 import javax.swing.*;
 
