@@ -1,0 +1,83 @@
+The file cars.csv has data dimensioned 5076 rows by 5 columns.
+The first 20 rows of the dataset starting at 0 are: 
+    Dimensions.Height  Dimensions.Length  Dimensions.Width Identification.Make  Identification.Year
+0                 140                143               202                Audi                 2009
+1                 140                143               202                Audi                 2009
+2                 140                143               202                Audi                 2009
+3                 140                143               202                Audi                 2009
+4                 140                143               202                Audi                 2009
+5                  91                 17                62                Audi                 2009
+6                  91                 17                62                Audi                 2009
+7                 201                221               191                Audi                 2009
+8                 201                221               191                Audi                 2009
+9                 147                 96                34                Audi                 2009
+10                147                 96                34                Audi                 2009
+11                147                 96                34                Audi                 2009
+12                172                 63                87               Acura                 2012
+13                172                 63                87               Acura                 2012
+14                226                243               201                 BMW                 2010
+15                226                243               201                 BMW                 2011
+16                148                 12               191                 BMW                 2010
+17                148                 12               191                 BMW                 2011
+18                112                 22               181           Chevrolet                 2012
+19                112                140               181           Chevrolet                 2012
+Summary of Statistics:
+       Dimensions.Height  Dimensions.Length  Dimensions.Width  Identification.Year
+count        5076.000000        5076.000000       5076.000000          5076.000000
+mean          145.632191         127.825847        144.012411          2010.867612
+std            62.125026          77.358295         79.925899             0.782951
+min             1.000000           2.000000          1.000000          2009.000000
+25%           104.000000          60.000000         62.000000          2010.000000
+50%           152.000000         128.000000        158.000000          2011.000000
+75%           193.000000         198.000000        219.000000          2011.000000
+max           255.000000         255.000000        254.000000          2012.000000
+Number of instances per car make:
+Identification.Make
+AMG                    10
+Acura                  33
+Aston Martin           43
+Audi                   87
+BMW                   133
+BMW Motorrad           58
+Bentley                18
+Buick                  71
+Cadillac              200
+Chevrolet             626
+Chrysler               30
+Chrysler Group LLC      6
+Dodge                 260
+Ferrari                 1
+Ford                  603
+GMC                   368
+Grand Cherokee         48
+Honda                 200
+Hyundai               188
+Infiniti               85
+Jaguar                 44
+Jeep                  119
+Kia                   135
+Lamborghini             5
+Land Rover             35
+Lexus                  52
+Lincoln                43
+Lotus                  11
+MINI                   62
+Maserati               12
+Maybach                13
+Mazda                 168
+Mercedes               64
+Mercedes-AMG            6
+Mercedes-Benz           7
+Mercury                28
+Mitsubishi             51
+Nissan                294
+Porsche                51
+Rolls-Royce            10
+Saab                   59
+Scion                  26
+Subaru                105
+Suzuki                 51
+Toyota                325
+Volkswagen            129
+Volvo                 103
+dtype: int64

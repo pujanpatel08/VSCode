@@ -1,0 +1,118 @@
+<!-- 
+Author: Pujan Patel
+Date: March 29, 2025
+Description: HTML table with alternating row colors, sticky header, hover effects, and bold third column. 
+Documentation: AI was used to help me write most of this file and understand what the code does
+Honor Code: 
+    - As a Hokie, I will conduct myself with honor and integrity at all times.
+    - I will not lie, cheat, or steal, nor will I accept the actions of those who do.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Table Design</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        table {
+            width: 60%; /* Reduced table width for thinner columns */
+            border-collapse: collapse;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            background: white;
+            text-align: center;
+        }
+
+        th, td {
+            padding: 8px 10px; /* Reduced padding for thinner columns */
+            border: 1px solid #ccc;
+        }
+
+        th {
+            background: #007bff;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        /* Alternating row colors */
+        tr:nth-child(odd) {
+            background: #f9f9f9;
+        }
+
+        tr:nth-child(even) {
+            background: #ffffff;
+        }
+
+        /* Unique color for every third row */
+        tr:nth-child(3n) {
+            background: #d1e7dd; /* Light green */
+        }
+        
+        /* Hover effect (excluding header) */
+        tbody tr:hover {
+            background: #add8e6; /* Light blue */
+            transition: background 0.3s;
+        }
+
+        /* Prevent hover effect on header row */
+        thead tr:hover {
+            background: #007bff;
+        }
+        
+        /* Third column bold */
+        td:nth-child(3) {
+            font-weight: bold;
+        }
+
+        /* Centering table */
+        .container {
+            overflow: auto;
+            max-height: 90vh; /* Allows scrolling if content exceeds viewport */
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Hobby</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>1</td><td>Emma</td><td>Painting</td></tr>
+            <tr><td>2</td><td>Liam</td><td>Soccer</td></tr>
+            <tr><td>3</td><td>Olivia</td><td>Reading</td></tr>
+            <tr><td>4</td><td>Noah</td><td>Photography</td></tr>
+            <tr><td>5</td><td>Ava</td><td>Cooking</td></tr>
+            <tr><td>6</td><td>James</td><td>Hiking</td></tr>
+            <tr><td>7</td><td>Sophia</td><td>Swimming</td></tr>
+            <tr><td>8</td><td>Benjamin</td><td>Cycling</td></tr>
+            <tr><td>9</td><td>Mia</td><td>Traveling</td></tr>
+            <tr><td>10</td><td>Lucas</td><td>Gaming</td></tr>
+            <tr><td>11</td><td>Isabella</td><td>Knitting</td></tr>
+            <tr><td>12</td><td>Elijah</td><td>Fishing</td></tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
