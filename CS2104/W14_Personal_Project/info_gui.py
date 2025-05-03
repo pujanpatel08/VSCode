@@ -75,6 +75,22 @@ root = tk.Tk()
 root.title("Real-Time Info Dashboard")
 root.geometry("600x400")  # Increased size
 
+# Set window dimensions
+window_width = 600
+window_height = 400
+
+# Get screen width and height
+screen_width = root.winfo_screenwidth()
+screen_height = root.winfo_screenheight()
+
+# Calculate position coordinates to center the window
+x = int((screen_width / 2) - (window_width / 2))
+y = int((screen_height / 2) - (window_height / 2))
+
+# Set geometry with position
+root.geometry(f"{window_width}x{window_height}+{x}+{y}")
+
+
 # Load background images
 sky_img = ImageTk.PhotoImage(Image.open("CS2104/W14_Personal_Project/sky_background.png").resize((600, 400)))
 stock_img = ImageTk.PhotoImage(Image.open("CS2104/W14_Personal_Project/stocks_background.png").resize((600, 400)))
