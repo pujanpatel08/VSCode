@@ -1,5 +1,6 @@
 # info_terminal.py
 
+import time
 import requests
 
 OPENWEATHER_API_KEY = "ef796d6b13ddf32cb572bcd38e2db662"
