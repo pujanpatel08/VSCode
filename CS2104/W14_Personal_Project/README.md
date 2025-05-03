@@ -1,79 +1,56 @@
-# Real-Time Info Dashboard
+# Adjusted README with two sections: (1) How it was created, (2) How to use
 
-This project is a Python-based dashboard that fetches **real-time weather** and **cryptocurrency** data using free public APIs. It includes two interfaces:
-1. A terminal (command-line) interface
-2. A graphical interface (GUI) built with Tkinter
+adjusted_readme = """# Real-Time Info Dashboard
 
----
-
-## 🔧 Features
-
-- Choose between **Weather** and **Crypto** modes
-- Enter a **city name** or **cryptocurrency symbol**
-- Fetch live data using:
-  - [OpenWeatherMap API](https://openweathermap.org/api) for weather (requires API key)
-  - [CoinGecko API](https://www.coingecko.com/en/api) for cryptocurrency (free without API key)
-- Clean error handling and intuitive output
+This Python project displays **real-time weather** and **cryptocurrency prices** using public APIs. It includes:
+1. A terminal-based interface
+2. A graphical GUI using Tkinter
 
 ---
 
-## 🗂 File Structure
+## 🛠️ Part 1: How This Was Created
+
+This project was designed, developed, and tested over 10 hours as part of a personal programming project. Here's how it was built:
+
+- **Languages & Tools:** Python 3, `requests` for API calls, `tkinter` for GUI
+- **APIs Used:**
+  - [OpenWeatherMap API](https://openweathermap.org/api) to get weather data (requires free API key)
+  - [CoinGecko API](https://www.coingecko.com/en/api) to get real-time cryptocurrency data (no key needed)
+- **Process:**
+  - Began by researching API integration and exploring Python libraries.
+  - Created a terminal-based script that uses user input to fetch and display data.
+  - Then developed a GUI interface using Tkinter with radio buttons and a refresh button.
+  - Added error handling and input validation.
+  - Tested both versions and ensured user-friendly output.
+
+---
+
+## 🧑‍💻 Part 2: How to Use This Project
+
+### ✅ Requirements
+- Python 3.7+
+- `requests` library (install via `pip install requests`)
+
+---
+
+### 📂 Files
 
 | File            | Purpose                                    |
 |-----------------|--------------------------------------------|
-| `info_terminal.py` | Terminal-based version of the app          |
-| `info_gui.py`       | Tkinter-based graphical version             |
-| `README.md`         | Project overview and setup instructions     |
+| `info_terminal.py` | Command-line version of the dashboard       |
+| `info_gui.py`       | Graphical Tkinter-based version             |
+| `README.md`         | Instructions and documentation              |
 
 ---
 
-## ▶️ Running the Apps
+### 🔐 Set Up Your Weather API Key
 
-### ✅ Prerequisites
-- Python 3.7+
-- `requests` library
-
-Install dependencies with:
-
-```bash
-pip install requests
-```
-
-### 🌤 Weather API Key
-1. Sign up at [OpenWeatherMap](https://openweathermap.org/)
-2. Copy your free API key
-3. Replace `"your_openweather_api_key_here"` in both `.py` files
+1. Register for a free API key at [OpenWeatherMap](https://openweathermap.org/)
+2. Replace `"your_openweather_api_key_here"` in both `.py` files with your actual API key
 
 ---
 
-### 🖥 Terminal Version
+### ▶️ To Run the Terminal Version:
 
 ```bash
 python info_terminal.py
-```
-
-Follow the prompts to choose a mode and input a city or symbol.
-
----
-
-### 🪟 GUI Version
-
-```bash
-python info_gui.py
-```
-
-Use radio buttons to select Weather or Crypto, type input, and click **"Get Info"**.
-
----
-
-## 📌 Notes
-
-- CoinGecko does **not** require an API key.
-- OpenWeatherMap **does** require one — it's free and quick to get.
-- To test the GUI, make sure you're running in an environment with a graphical display.
-
----
-
-## 👨‍💻 Author
-Group 43 – CS Personal Programming Project
-
