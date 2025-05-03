@@ -2,7 +2,7 @@ import time
 import requests
 import tkinter as tk
 from tkinter import messagebox
-from PIL import Image, ImageTk  # Requires pillow installed
+from PIL import Image, ImageTk
 
 OPENWEATHER_API_KEY = "ef796d6b13ddf32cb572bcd38e2db662"
 WEATHER_API_URL = "https://api.openweathermap.org/data/2.5/weather"
