@@ -6,6 +6,7 @@ OPENWEATHER_API_KEY = "ef796d6b13ddf32cb572bcd38e2db662"
 WEATHER_API_URL = "https://api.openweathermap.org/data/2.5/weather"
 CRYPTO_API_URL = "https://api.coingecko.com/api/v3/simple/price"
 
+# Weather Function
 def get_weather(city):
     try:
         params = {"q": city, "appid": OPENWEATHER_API_KEY, "units": "metric"}
@@ -18,17 +19,27 @@ def get_weather(city):
     except Exception as e:
         return f"Error: {str(e)}"
 
+# Crypto Function with retry, symbol normalization, and error handling
 def get_crypto(symbol):
+    symbol = symbol.lower()
+    params = {"ids": symbol, "vs_currencies": "usd"}
     try:
-        response = requests.get(CRYPTO_API_URL, params={"ids": symbol.lower(), "vs_currencies": "usd"})
+        response = requests.get(CRYPTO_API_URL, params=params)
         data = response.json()
-        if symbol.lower() in data:
-            return f"{symbol.upper()} price: ${data[symbol.lower()]['usd']}"
+
+        if response.status_code == 200 and symbol in data and "usd" in data[symbol]:
+            return f"{symbol.upper()} price: ${data[symbol]['usd']}"
         else:
-            return f"Error: Cryptocurrency symbol '{symbol}' not found"
+            time.sleep(1)
+            response = requests.get(CRYPTO_API_URL, params=params)
+            data = response.json()
+            if response.status_code == 200 and symbol in data and "usd" in data[symbol]:
+                return f"{symbol.upper()} price: ${data[symbol]['usd']}"
+            else:
+                return f"Error: Data temporarily unavailable for '{symbol.upper()}'"
     except Exception as e:
         return f"Error: {str(e)}"
-
+    
 def run_terminal_version():
     print("Welcome to Real-Time Info Dashboard (Terminal Version)")
     mode = input("Enter mode (weather/crypto): ").strip().lower()
