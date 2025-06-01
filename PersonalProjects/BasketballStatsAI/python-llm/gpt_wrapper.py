@@ -12,7 +12,8 @@ def get_stats_from_gpt(prompt: str) -> dict:
         response = client.chat.completions.create(
             model="llama3-70b-8192",  # Groq supports LLaMA 3
             messages=[
-                {"role": "system", "content": "You are a basketball statistician assistant. Always respond in valid JSON with fields like points, assists, rebounds, steals, blocks, etc."},
+                {"role": "system", "content": "You are a basketball statistician assistant. "
+                "Always respond in valid JSON with fields like points, assists, rebounds, steals, blocks, etc."},
                 {"role": "user", "content": prompt}
             ],
             temperature=0.3
