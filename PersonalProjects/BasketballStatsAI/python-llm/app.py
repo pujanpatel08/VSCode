@@ -1,6 +1,6 @@
-from flask import Flask, request, jsonify # type: ignore
+from flask import Flask, request, jsonify 
 from gpt_wrapper import get_stats_from_gpt
-from flask_cors import CORS # type: ignore
+from flask_cors import CORS 
 
 # Initialize Flask app
 app = Flask(__name__)
