@@ -1,6 +1,6 @@
 import os
-from dotenv import load_dotenv
-from groq import Groq
+from dotenv import load_dotenv # type: ignore
+from groq import Groq # type: ignore
 import json
 
 load_dotenv()
