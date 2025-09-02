@@ -1,0 +1,88 @@
+
+Why do we use a container?
+Gives us access to the tools we need.
+    - compilier
+    - linker
+    - debugger
+    - assembler
+    - preprocessor
+    - editor
+
+
+We are used to a gui view of our computer
+We have another way to access the same information
+The terminal, or shell, or command prompt
+
+Most of the tools for this class are terminal based tools
+So being comfortable on the terminal is essential
+
+So we learn some basic linux commands so we can be useful
+
+What is linux?
+It is a kernel.
+A way to "talk" to a machine
+It's open source.
+
+It's an operating system.
+An operating system allows users to access the resources on a computer.
+
+Files
+images
+devices
+internet
+memory
+processor
+
+The best way to get better at the terminal commands is to practice
+
+The terminal gives a view of the file system.
+
+ls - means list. It will display the contents of the directory
+ls -a will show all of the Files
+
+. - the "dot" file is the file that represents the current directory
+.. - the "double dot" file represents the parent of this directory
+
+Our filesystem is a tree.
+
+The tree is rooted at the root, the root is represented by a / 
+
+/workspaces/CS2505 is my path to my working directory
+pwd is the command to show you your current working directory
+
+cd <path> will change directory to where you asked it to go with the <path>
+
+paths come in 2 flavors
+absolute paths. They are paths that start with the root, /, and explicitly
+list the entire way to get where you want to go
+relative paths. These are paths that do not start with the root. They are taken
+to mean from your current working directory, follow the path to some destination
+
+cp inclass/aug-28.txt ../
+
+cp means copy and it takes 2 arguments
+arguement 1 is the source
+arguement 2 is the destination
+
+mkdir - make directory
+rmdir - removes a directory - the directory must be empty
+
+mv source destination
+this can also be used to rename a file 
+
+the cat command can be used to see the contents of 
+a file
+
+Linux has a set of wildcards that can be used with commands
+
+a wildcard replaces a single letter or a set of letters.
+
+The 2 we will start with are ? and *
+
+a ? will match any single character
+a * will match any character
+
+
+ls file?.java wwould match java files named file0.java file1.java ... file9.java but
+not file10.java
+ls file??.java would match file10.java
