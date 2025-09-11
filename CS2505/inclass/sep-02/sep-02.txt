@@ -1,0 +1,111 @@
+September 02
+
+More Linux
+
+# Announcements
+
+- Math 2114 - CS 2505 Exam Conflict
+
+# File Extensions
+
+- What are those little parts of filenames that come after the dot?
+
+examples: pdf, txt, java, png, c, md, h, 
+
+Who are these exentions for?
+These are for the operating system.
+These are also for us, so we can "tell" what's in the file.
+
+# File permission
+
+When we do ls -l we see a long listing of our files.
+
+total 0
+-rw-r--r-- 1 root root 408 Sep  2 16:41 sep-02.txt
+
+We are the root user.
+The root is the admin of the container
+We are also in the root group
+
+Then there are 3 sets of persmissions related to reading, 
+    writing and executing
+
+We can control who has access to files using these persmissions
+
+The 3 groups of people are
+
+You the owner
+Your group
+and Others
+
+We can add or remove permissions 
+
+[root@f03b82f40a0d sep-02]# ls -l
+total 4
+-rw-r--r-- 1 root root 811 Sep  2 16:50 sep-02.txt
+[root@f03b82f40a0d sep-02]# chmod o-r sep-02.txt 
+[root@f03b82f40a0d sep-02]# ls -l
+total 4
+-rw-r----- 1 root root 811 Sep  2 16:50 sep-02.txt
+
+[root@f03b82f40a0d sep-02]# chmod u+x sep-02.txt
+-rw-r----- 1 root root 811 Sep  2 16:50 sep-02.txt
+-rwxr----- 1 root root 1149 Sep  2 16:52 sep-02.txt
+
+[root@f03b82f40a0d sep-02]# ls -l
+total 4
+-rwx------ 1 root root 1201 Sep  2 16:53 sep-02.txt
+[root@f03b82f40a0d sep-02]# chmod go+rw sep-02.txt 
+[root@f03b82f40a0d sep-02]# ls
+sep-02.txt
+[root@f03b82f40a0d sep-02]# ls -l
+total 4
+-rwxrw-rw- 1 root root 1201 Sep  2 16:53 sep-02.txt
+[root@f03b82f40a0d sep-02]# 
+
+Read Write Execute
+ 0     0     0      - no permissions
+ 1     0     0      - read persmission
+ 0     1     0      - write permission
+ 0     0     1      - execute permission
+
+ 000 - 0 
+ 001 - 1 - execute 
+ 010 - 2 - write 
+ 100 - 4 - read 
+
+chmod 760 sep-02.txt 
+
+# Archives
+
+- Two main Archives
+
+1. Tar 
+2. Zip
+
+Tar - stands for tape archive 
+    - not compressed
+Zip - is compressed 
+
+
+Let's make a tar file.
+
+to make a tar you use the tar command
+
+tar cvf <name of tar file> files to tar
+
+when you make a tar you need to give options
+
+c - means create
+v - verbose - it's optional and means show me the work
+f - means file - it comes last
+
+Let's make a zip file
+
+zip <name of file to zip> files to zip 
+
+
+How to extract
+
+tar xvf file.tar
+unzip file.zip

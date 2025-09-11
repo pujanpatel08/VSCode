@@ -1,0 +1,57 @@
+#! /bin/bash
+# Pujan Patel
+# PID: pujanpatel8
+# As a Hokie, I will conduct myself with honor and integrity at all times. I will not lie, cheat, or steal, nor will I accept the actions of those who do.
+
+
+#1
+mkdir aisles
+
+#2
+cd aisles
+
+#3
+mkdir produce seasonal snacks
+
+#4
+cd snacks
+
+#5
+touch chips.txt cookies.txt peanuts.txt
+
+#6
+ls
+
+#7
+cd ..
+cd produce
+
+#8
+mkdir fruits vegetables
+
+#9
+cd fruits
+touch lemon.txt pumpkin.txt
+
+#10
+cd ../vegetables
+touch potato.txt spinach.txt tomato.txt
+
+#11
+mv tomato.txt ../fruits/
+
+#12
+cd ../../seasonal
+
+#13
+touch spooky_decorations.txt costumes.txt
+
+#14
+mv ../produce/fruits/pumpkin.txt .
+
+#15
+mv spooky_decorations.txt festive_decorations.txt
+mv pumpkin.txt candy_cane.txt
+
+#16
+rm costumes.txt

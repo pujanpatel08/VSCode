@@ -1,0 +1,41 @@
+September 9
+
+Introduction to C
+
+C is not Java
+
+C is Java's ancestor in the line of languages
+Java is inspired by C and C++
+
+Java is a what kind of language? Or said this way, Java uses what paradigm to programming?
+Object Oriented
+Objects have instance variables, data
+    The data should be private. (why? because encapsulation meaning it keeps outside factors from messing with your data)
+Objects have methods, or functions
+
+A method is a function that is attached to a class or Object
+
+C uses what paradigm?
+Procedural.
+The procedural paradigm is about data flow, as in, data flows into a function,
+is modified, and then flows out or back.
+
+C does not have classes.
+C does have structs. A struct is like a class but the data is all public and there are no methods.
+
+When we use the new keyboard in C, we are allocating memory, just like in Java, but in C there is no automatic garbage collection, so we must clean up our own messes
+
+In order to use dynamic memory allocation, or memoy that was allocated using new, we must use pointers.
+
+Most of our variables will not use new when we create them.
+
+int x;
+
+C does not automatically initialize your variables. So you must do it yourself
+
+int x = 0;
+or 
+int x;
+x = 0;
+
+
