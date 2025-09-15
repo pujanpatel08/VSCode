@@ -30,6 +30,21 @@ int main() {
     // printf is the function to print a string with formatting
 
     // to run this program we msut compile this program
+    // gcc is our compiler
+    // we give it some options, and the file(s) to compile
+    // assuming no errors, we can then run the executable
+    // running gcc main.c creates a file called a.out
+    // running a.out will run the executable
+    // a.out need the file path so run ./a.out
+    // to change the file name from a.out to something else, when compiling, run gcc mian.c -o *newName*
+    // need to debug, add the debugging symbols: gcc -o hello -g main.c
+    // we do not list our header files, or our .h files
+
+    int x;
+    x = 10;
+
+    printf( "x is %d\n", x);
+    printf( "x is %u bytes long\n", sizeof(x));
     
     // This is the return value we use when nothing bad has happened
     // generally means that we ran succesfully
