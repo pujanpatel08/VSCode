@@ -1,0 +1,2 @@
+I read this many data points: 3
+And they are as follows: 1 2 3
