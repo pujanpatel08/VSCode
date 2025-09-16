@@ -1,0 +1,33 @@
+Functions in C
+
+Functions in C come in separate parts
+
+We need to do these steps
+
+1. We need to declare our functions before we call them.
+2. We need to define, or write, the functions.
+3. We need to call the function.
+
+The function definition can serve as the delcaration, if you define the function before you call it.
+
+We delcare our functions in header files
+Header files are files that end in .h
+We #include our header files into our c files
+We do not compile our header files explicitly
+
+the return type
+the names of the function
+the list of parameters
+
+int my_function(intx, unt z, double z);
+
+it ends with a semicolon
+
+the function definition then
+
+int my_function(int x, int z, double z) {
+
+    //stuff with x y and z
+
+    return <some int>;
+}
