@@ -1,0 +1,75 @@
+Command: subtract
+	V1 Direction: 48.162	 V1 Magnitude: 42.683
+	V2 Direction: 49.391	 V2 Magnitude: 4.683
+	The resultant vector has a direction of 48.011 degrees and a magnitude of 38.001
+
+Command: subtract
+	V1 Direction: 22.175	 V1 Magnitude: 81.406
+	V2 Direction: 27.518	 V2 Magnitude: 92.212
+	The resultant vector has a direction of 241.705 degrees and a magnitude of 13.491
+
+Command: dot_product
+	<23.642, 7.760>
+	<54.587, 45.388>
+	The dot product of the two vectors is 1642.757
+
+Command: angle_between
+	<47.905, 92.383>
+	<24.140, 73.943>
+	The angle between the two vectors is 9.329 degrees
+
+Command: subtract
+	V1 Direction: 85.237	 V1 Magnitude: 16.868
+	V2 Direction: 94.828	 V2 Magnitude: 38.244
+	The resultant vector has a direction of 282.237 degrees and a magnitude of 21.794
+
+Command: dot_product
+	<7.845, 59.268, 25.643>
+	<80.128, 7.431, 67.327>
+	The dot product of the two vectors is 2795.491
+
+Command: dot_product
+	<83.042, 50.694, 91.520, 10.560>
+	<42.906, 61.726, 30.226, 65.548>
+	The dot product of the two vectors is 10150.608
+
+Command: dot_product
+	<10.935, 13.287, 31.718, 3.318>
+	<36.427, 5.661, 17.299, 21.664>
+	The dot product of the two vectors is 1094.118
+
+Command: subtract
+	V1 Direction: 12.127	 V1 Magnitude: 58.908
+	V2 Direction: 11.035	 V2 Magnitude: 46.589
+	The resultant vector has a direction of 16.247 degrees and a magnitude of 12.359
+
+Command: subtract
+	V1 Direction: 69.303	 V1 Magnitude: 71.232
+	V2 Direction: 45.882	 V2 Magnitude: 75.734
+	The resultant vector has a direction of 155.999 degrees and a magnitude of 30.153
+
+Command: dot_product
+	<85.848, 21.600, 25.095>
+	<77.367, 31.160, 67.001>
+	The dot product of the two vectors is 8996.248
+
+Command: angle_between
+	<60.386, 32.548>
+	<7.579, 44.199>
+	The angle between the two vectors is 51.945 degrees
+
+Command: angle_between
+	<74.917, 44.802>
+	<55.294, 79.579>
+	The angle between the two vectors is 24.327 degrees
+
+Command: subtract
+	V1 Direction: 1.108	 V1 Magnitude: 72.229
+	V2 Direction: 34.866	 V2 Magnitude: 11.143
+	The resultant vector has a direction of 355.492 degrees and a magnitude of 63.269
+
+Command: subtract
+	V1 Direction: 99.620	 V1 Magnitude: 79.446
+	V2 Direction: 89.049	 V2 Magnitude: 45.502
+	The resultant vector has a direction of 113.140 degrees and a magnitude of 35.706
+

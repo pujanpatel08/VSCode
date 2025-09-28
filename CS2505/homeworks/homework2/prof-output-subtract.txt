@@ -1,0 +1,25 @@
+Command: subtract
+	V1 Direction: 71.372	 V1 Magnitude: 69.475
+	V2 Direction: 68.435	 V2 Magnitude: 1.478
+	The resultant vector has a direction of 71.436 degrees and a magnitude of 67.999
+
+Command: subtract
+	V1 Direction: 46.427	 V1 Magnitude: 7.326
+	V2 Direction: 16.499	 V2 Magnitude: 68.275
+	The resultant vector has a direction of 193.121 degrees and a magnitude of 62.034
+
+Command: subtract
+	V1 Direction: 98.720	 V1 Magnitude: 23.983
+	V2 Direction: 56.812	 V2 Magnitude: 92.819
+	The resultant vector has a direction of 224.751 degrees and a magnitude of 76.663
+
+Command: subtract
+	V1 Direction: 60.963	 V1 Magnitude: 84.169
+	V2 Direction: 16.184	 V2 Magnitude: 51.258
+	The resultant vector has a direction of 98.037 degrees and a magnitude of 59.891
+
+Command: subtract
+	V1 Direction: 40.178	 V1 Magnitude: 77.000
+	V2 Direction: 71.317	 V2 Magnitude: 96.302
+	The resultant vector has a direction of 303.959 degrees and a magnitude of 50.094
+

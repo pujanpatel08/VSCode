@@ -1,0 +1,25 @@
+Command: dot_product
+	<67.490, 4.957>
+	<7.397, 58.701>
+	The dot product of the two vectors is 790.204
+
+Command: dot_product
+	<3.113, 67.019, 30.613, 79.753>
+	<90.673, 18.971, 29.407, 96.351>
+	The dot product of the two vectors is 10138.200
+
+Command: dot_product
+	<70.133, 81.366>
+	<78.583, 43.624>
+	The dot product of the two vectors is 9060.772
+
+Command: dot_product
+	<99.610, 21.410, 6.994>
+	<66.177, 33.216, 2.310>
+	The dot product of the two vectors is 7319.202
+
+Command: dot_product
+	<28.930, 20.292>
+	<86.459, 65.014>
+	The dot product of the two vectors is 3820.523
+
