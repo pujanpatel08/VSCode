@@ -1,0 +1,9 @@
+auth:
+  mfa: true
+  password_min_length: 12
+logging:
+  retention_days: 90
+network:
+  tls_enabled: true
+storage:
+  encrypt_at_rest: true

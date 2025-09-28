@@ -1,0 +1,5 @@
+All employees must use complex passwords with a minimum of 10 characters.
+Multifactor authentication is required for remote access.
+Logs are retained for 90 days.
+TLS is required for all external traffic.
+Laptops must encrypt data at rest.
