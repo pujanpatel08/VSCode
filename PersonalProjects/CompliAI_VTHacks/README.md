@@ -5,6 +5,20 @@ Automates "easy win" compliance checks (CMMC/NIST/ISO), **plus** attaches live *
 
 ## Run (two terminals)
 
+## Install Dependencies
+Backend:
+```bash
+cd backend
+python3 -m venv .venv 
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+Frontend:
+```bash
+cd frontend
+npm install
+```
+
 ### Backend
 ```bash
 cd backend
