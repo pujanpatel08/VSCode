@@ -1,0 +1,17 @@
+Company Security Policy (Targeted ~67%)
+
+- MFA required
+- Passwords min 10 chars
+- Logs kept 90 days
+- TLS required
+- Encrypt at rest
+- Account lockout 5 failures
+- Session auto-lock 15 min
+- VPN required
+- Least privilege enforced
+- Wireless enterprise auth (policy only)
+- Vulnerability scans monthly (policy only)
+- Time synchronization enabled (policy only)
+- Malware protection enabled
+- Incident response plan documented
+- Security awareness training required

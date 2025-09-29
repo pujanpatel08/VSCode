@@ -1,0 +1,20 @@
+Comprehensive Security Policy
+
+- MFA required
+- Passwords min 10 chars
+- Audit logs retained 180 days and logging enabled
+- TLS required
+- Encrypt data at rest
+- Account lockout after 5 failures
+- Session auto-lock 10 min
+- VPN required for remote access
+- Least privilege enforced
+- Wireless enterprise auth
+- Mobile devices encrypted
+- Media sanitization performed
+- Vulnerability scans monthly
+- Patch management enforced
+- Malware protection enabled
+- Incident response plan documented
+- Security awareness training required
+- Time synchronization enabled

@@ -1,0 +1,5 @@
+auth:
+  password_min_length: 4
+logging:
+  enabled: false
+  retention_days: 5

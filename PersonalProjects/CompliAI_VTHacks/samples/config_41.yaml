@@ -1,0 +1,17 @@
+auth:
+  password_min_length: 10
+logging:
+  enabled: false
+  retention_days: 90
+session:
+  auto_lock_minutes: 15
+network:
+  tls_enabled: true
+iam:
+  enforce_least_privilege: true
+malware:
+  enabled: true
+incident:
+  plan_documented: true
+training:
+  security_awareness: true

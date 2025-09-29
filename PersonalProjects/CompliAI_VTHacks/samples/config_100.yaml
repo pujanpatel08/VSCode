@@ -1,0 +1,36 @@
+auth:
+  mfa: true
+  password_min_length: 12
+  max_failed_attempts: 5
+session:
+  auto_lock_minutes: 10
+logging:
+  enabled: true
+  retention_days: 180
+remote_access:
+  vpn_required: true
+network:
+  tls_enabled: true
+storage:
+  encrypt_at_rest: true
+iam:
+  enforce_least_privilege: true
+wireless:
+  enterprise_auth: true
+mobile:
+  encrypt: true
+media:
+  sanitization_enabled: true
+scanner:
+  enabled: true
+  frequency_days: 30
+patch:
+  auto_update: true
+malware:
+  enabled: true
+incident:
+  plan_documented: true
+training:
+  security_awareness: true
+time:
+  ntp_sync: true

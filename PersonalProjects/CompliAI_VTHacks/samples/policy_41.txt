@@ -1,0 +1,11 @@
+Minimal Security Policy
+
+- Passwords min 10 chars
+- TLS required
+- Audit logs must be retained 90 days
+- Account lockout after failures
+- Least privilege enforced
+- Session auto-lock 15 min
+- Malware protection enabled
+- Security awareness training required
+- Incident response plan documented
