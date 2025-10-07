@@ -1,0 +1,34 @@
+September 18
+
+C Functions and Compiling Process
+
+Compiling a program is a 4 step process.
+
+1. The preprocessor 
+2. The compiler
+3. The assembler
+4. The linker
+
+1. The preprocessor
+
+cpp - is the c preprocessor
+
+We invoke it like this: cpp main.c 
+it will then spit out the results to the command line 
+If we want to "capture" the results we can use
+commandline redirection
+
+cc is the c compiler 
+we invoke it like cc -S main.c to create an assembly file.
+These two steps, cpp and cc, produce human "readable" files
+or files that are in plain text
+
+as is the assembler it produces a binary file
+the file it makes is called a.out
+
+ld is the linker 
+it's job is to find all of the parts for the program 
+and hook them up so when we run, we have access to
+the utilies we need, e.g. printf 
+the output for the linker is also a binary file, but 
+we can execute it, or run it. 
