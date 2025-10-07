@@ -120,15 +120,26 @@ See the example output for details on the second line of output.
 */
 void display(struct Array data, FILE* out, bool all) {
     if (all) {
+        fprintf(out, "\t");
         for (int i = 0; i < SIZE; i++) {
-            fprintf(out, "%d, ", data.values[i]);
+            fprintf(out, "%d", data.values[i]);
+            if (i < SIZE - 1) {
+                fprintf(out, ", ");
+            }
         }
-        fprintf(out, "SIZE of array: %d\n", SIZE);
+        fprintf(out, "\n\tSIZE of array: %d\n", SIZE);
     } else {
-        for (int i = 0; i < data.count; i++) {
-            fprintf(out, "%d, ", data.values[i]);
+        if (data.count > 0) {
+            fprintf(out, "\t");
+            for (int i = 0; i < data.count; i++) {
+                fprintf(out, "%d", data.values[i]);
+                if (i < data.count - 1) {
+                    fprintf(out, ", ");
+                }
+            }
+            fprintf(out, "\n");
         }
-        fprintf(out, "Count of elements in array: %d\n", data.count);
+        fprintf(out, "\tCount of elements in array: %d\n", data.count);
     }
 }
 

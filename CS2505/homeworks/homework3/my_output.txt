@@ -17,13 +17,15 @@ Command: contains 10
 Command: contains 100
 	100 not contained in array
 Command: display all
-12, 10, 11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, SIZE of array: 20
+	12, 10, 11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+	SIZE of array: 20
 Command: removeAt 1
 	data removed from array at index 1
 Command: display data
-12, 11, Count of elements in array: 2
+	12, 11
+	Count of elements in array: 2
 Command: removeAt 100
 	data not removed array at index 100
 Command: clear 
 Command: display data
-Count of elements in array: 0
+	Count of elements in array: 0
