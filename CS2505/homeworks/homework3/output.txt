@@ -1,0 +1,31 @@
+Command: add 10
+	10 successfully added
+Command: add 11 1
+	11 successfully added
+Command: add 12 0
+	12 successfully added
+Command: find 10
+	10 found at index 1
+Command: find 11
+	11 found at index 2
+Command: find 12
+	12 found at index 0
+Command: find 13
+	13 not found in array
+Command: contains 10
+	10 contained in array
+Command: contains 100
+	100 not contained in array
+Command: display all
+	12, 10, 11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+	SIZE of array: 20
+Command: removeAt 1
+	data removed from array at index 1
+Command: display data
+	12, 11
+	Count of elements in array: 2
+Command: removeAt 100
+	data not removed array at index 100
+Command: clear 
+Command: display data
+	Count of elements in array: 0

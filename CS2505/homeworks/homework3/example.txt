@@ -1,0 +1,16 @@
+add 10
+add 11 1
+add 12 0
+find 10
+find 11
+find 12
+find 13
+contains 10
+contains 100
+display all
+removeAt 1
+display data
+removeAt 100
+clear
+display data
+
