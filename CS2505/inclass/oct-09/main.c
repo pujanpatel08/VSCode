@@ -1,6 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void release_memory( int* ptr ) {
+    free(*ptr);
+    *ptr = NULL;
+}
+
 int main() {
     
     int * x;
@@ -39,6 +44,18 @@ int main() {
     //it is dynamically allocated
     //so we need to clean it up
     //or we need to release the memory
+    *x = 5;
+    printf( "%p\n", x );
+    printf( "%p\n", &y );      
+    printf( "%d\n", *x );
+    printf( "%d\n", y );
+
+    //if we dont release the memory we will have a memory leak
+    release_memory(&x);
+    //this wil release the target if the pointer 
+    //it does not change the value in the pointer
+    //that is, the pointer still retains the same memory address it had before
+    //access the target after a call to free is an error
     printf( "%p\n", x );
     printf( "%p\n", &y );      
     printf( "%d\n", *x );

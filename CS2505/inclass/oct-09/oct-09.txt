@@ -1,0 +1,23 @@
+
+Numeric Bases
+
+What base do we (humans) generally use?
+Base 10
+
+What base does the computer use?
+Base 2
+
+What base does the computer use to store characters?
+Base 16
+
+What base does the computer use to store colors?
+Base 16
+
+What base does the computer use to store images?
+Base 16
+
+What base does the computer use to store videos?
+Base 16
+
+What base does the computer use to store audio?
+Base 16
