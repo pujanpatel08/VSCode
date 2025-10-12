@@ -1,5 +1,3 @@
-//Code
-
 import React, { useEffect, useMemo, useRef, useState } from "react";
 
 // ORBIT: From booking to belonging — hackathon prototype in a single React file
@@ -83,6 +81,7 @@ function OrbitApp() {
   const [phone, setPhone] = useState("");
   const [lgbtq, setLgbtq] = useState("No");
   const [orientation, setOrientation] = useState("");
+  const [otherOrientation, setOtherOrientation] = useState("");
   const [ageMin, setAgeMin] = useState(21);
   const [ageMax, setAgeMax] = useState(40);
 
@@ -249,24 +248,41 @@ function OrbitApp() {
               ))}
             </div>
             {lgbtq === "Yes" && (
-              <div className="mt-4">
-                <p className="mb-2 font-medium">Orientation (single-select)</p>
-                <ChipCloud
-                  options={[
-                    "Gay",
-                    "Lesbian",
-                    "Bisexual",
-                    "Trans",
-                    "Queer",
-                    "Other",
-                    "Prefer not to say",
-                  ]}
-                  multi={false}
-                  value={orientation ? [orientation] : []}
-                  onChange={(vals) => setOrientation(vals[0] || "")}
-                />
-              </div>
-            )}
+  <div className="mt-4">
+    <p className="mb-2 font-medium">Orientation (single-select)</p>
+    <ChipCloud
+      options={[
+        "Gay",
+        "Lesbian",
+        "Bisexual",
+        "Trans",
+        "Queer",
+        "Other",
+        "Prefer not to say",
+      ]}
+      multi={false}
+      value={orientation ? [orientation] : []}
+      onChange={(vals) => {
+        const selected = vals[0] || "";
+        setOrientation(selected);
+        if (selected !== "Other") setOtherOrientation("");
+      }}
+    />
+
+    {/* If “Other” is selected, show a text input */}
+    {orientation === "Other" && (
+      <div className="mt-3">
+        <LabeledInput
+          label="Please specify"
+          value={otherOrientation}
+          onChange={setOtherOrientation}
+          placeholder="Enter your orientation"
+        />
+      </div>
+    )}
+  </div>
+)}
+
           </div>
 
           <div className="mt-6 grid md:grid-cols-2 gap-4">
@@ -300,12 +316,22 @@ function OrbitApp() {
         <Card title="Add photos (min 3, max 9)">
           <BackRow onBack={goBack} />
           <PhotoGrid photos={photos} setPhotos={setPhotos} />
-          <div className="mt-6 flex justify-between items-center">
-            <span className="text-sm opacity-80">{photos.length} / 9 selected</span>
-            <Button disabled={!canGoPhotosNext} onClick={() => setPage("interests")}>
+          <div className="mt-6 flex justify-between items-center relative">
+          {/* Move x/9 label slightly up and away from Back button */}
+          <span className="absolute bottom-16 left-4 text-sm opacity-80">
+            {photos.length} / 9 selected
+          </span>
+          
+          {/* Keep Continue button aligned right */}
+          <div className="ml-auto">
+            <Button
+              disabled={!canGoPhotosNext}
+              onClick={() => setPage("interests")}
+            >
               Continue
             </Button>
           </div>
+        </div>
         </Card>
       )}
 
@@ -372,7 +398,7 @@ function OrbitApp() {
       {page === "groups" && (
         <Card title="Your Circles">
           <BackRow onBack={goBack} />
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-[2fr,1fr] gap-6 pb-20">
             <div>
               <h3 className="font-semibold mb-2">Suggested groups</h3>
               {suggestedGroups.length === 0 ? (
@@ -411,7 +437,7 @@ function OrbitApp() {
       {page === "chat" && (
         <Card title="Circle chat">
           <BackRow onBack={goBack} />
-          <div className="grid md:grid-cols-[2fr,1fr] gap-6">
+          <div className="grid md:grid-cols-[2fr,1fr] gap-6 pb-12">
             <ChatPanel
               group={(groups.length ? groups : suggestedGroups).find((g) => g.id === activeGroupId) || (groups.length ? groups[0] : suggestedGroups[0])}
               users={SAMPLE_USERS}
@@ -592,7 +618,9 @@ function PhotoGrid({ photos, setPhotos }) {
                     src={previews[idx].url}
                     alt="preview"
                     className="w-full h-full object-cover rounded-xl"
+                    style={{ objectPosition: "center", aspectRatio: "1 / 1" }}
                   />
+
                   <button
                     className="absolute top-1 right-1 text-xs bg-black/60 px-2 py-1 rounded"
                     onClick={(e) => {
@@ -637,10 +665,10 @@ function DestinationAutosuggest({ destinations, value, setValue }) {
   }, [value]);
 
   const matches = useMemo(() => {
-    if (!query) return [];
-    const q = query.toLowerCase();
-    return destinations.filter((d) => d.toLowerCase().includes(q)).slice(0, 8);
-  }, [destinations, query]);
+  if (!query) return [];
+  const q = query.toLowerCase();
+  return destinations.filter((d) => d.toLowerCase().includes(q));
+}, [destinations, query]);
 
   return (
     <div className="relative">
@@ -655,22 +683,25 @@ function DestinationAutosuggest({ destinations, value, setValue }) {
         placeholder="Start typing (e.g., Paris, Tokyo)"
       />
       {open && matches.length > 0 && (
-        <div className="absolute z-20 w-full bg-black/90 border border-white/10 rounded-xl mt-2 overflow-hidden">
-          {matches.map((m) => (
-            <button
-              key={m}
-              className="w-full text-left px-3 py-2 hover:bg-white/10"
-              onClick={() => {
-                setValue(m);
-                setQuery(m);
-                setOpen(false);
-              }}
-            >
-              {m}
-            </button>
-          ))}
-        </div>
-      )}
+      <div
+        className="absolute z-20 w-full bg-black/90 border border-white/10 rounded-xl mt-2 overflow-y-auto"
+        style={{ maxHeight: "12rem" }} // ≈ 5 options visible
+      >
+        {matches.map((m) => (
+          <button
+            key={m}
+            className="w-full text-left px-3 py-2 hover:bg-white/10 transition-colors"
+            onClick={() => {
+              setValue(m);
+              setQuery(m);
+              setOpen(false);
+            }}
+          >
+            {m}
+          </button>
+        ))}
+      </div>
+    )}
     </div>
   );
 }
@@ -853,7 +884,7 @@ function BookingSidebar({ group, users, onInvite }) {
   const [time, setTime] = useState("");
   const [partySize, setPartySize] = useState(2);
 
-  if (!group) return null;
+  if (!group) return null; 
 
   return (
     <div className="bg-white/5 rounded-xl p-4 border border-white/10">
