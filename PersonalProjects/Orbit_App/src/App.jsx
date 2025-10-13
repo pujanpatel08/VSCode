@@ -235,20 +235,46 @@ function OrbitApp() {
     <div className="space-y-8">
       <Header onProfileClick={() => setPage("profile")}/>
 
-      {page === "welcome" && (
-        <Card>
-          <div className="text-center py-16">
-            <h1 className="text-9xl font-extrabold tracking-tight">ORBIT</h1>
-            <p className="mt-3 text-lg opacity-90">From Booking To Belonging</p>
-            <button
-              className="mt-10 px-6 py-3 rounded-2xl bg-white/10 hover:bg-white/20 transition shadow"
-              onClick={() => setPage("profile")}
-            >
-              Get Started
-            </button>
-          </div>
-        </Card>
-      )}
+    {page === "welcome" && (
+  <Card>
+    <div className="flex flex-col items-center justify-center py-16">
+      {/* Logo + ORBIT text tightly aligned */}
+      <div className="flex items-center justify-center">
+        <img
+          src="/orbit-logo.png"
+          alt="Orbit Logo"
+          className="w-[325px] h-[325px] drop-shadow-[0_0_50px_rgba(0,150,255,0.9)] animate-pulse mr-[-55px] mt-4 ml-1"
+          style={{
+            filter:
+              "drop-shadow(0 0 40px rgba(0,150,255,0.9)) drop-shadow(0 0 80px rgba(0,150,255,0.6))",
+          }}
+        />
+        <h1
+          className="text-[10rem] font-extrabold tracking-tight text-white animate-pulse"
+          style={{
+            textShadow:
+              "0 0 30px rgba(0,150,255,0.8), 0 0 60px rgba(0,150,255,0.5)",
+          }}
+        >
+          ORBIT
+        </h1>
+      </div>
+
+      <p className="mt-[-55px] text-lg opacity-90 ">From Booking To Belonging</p>
+
+      <button
+        className="mt-10 px-6 py-3 rounded-2xl bg-white/10 hover:bg-white/20 transition shadow"
+        onClick={() => setPage('profile')}
+      >
+        Get Started
+      </button>
+    </div>
+  </Card>
+)}
+
+
+
+
 
       {page === "profile" && (
         <Card title="Create your profile">
