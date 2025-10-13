@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
+import { getActivitySuggestions } from "./ai/gemini";
 
 // ORBIT: From booking to belonging — hackathon prototype in a single React file
 // CHANGE REQUEST: Only add a Back button on each page to go to the previous page. Do not change any other functionality.
@@ -10,6 +11,7 @@ export default function App() {
       <div className="relative z-10 flex items-center justify-center min-h-screen px-4 py-8">
   <div className="w-full max-w-5xl">
     <OrbitApp />
+    
   </div>
 </div>
     </div>
@@ -141,17 +143,45 @@ function OrbitApp() {
 
   // Group suggestions: cluster liked users into groups of ~4
   const suggestedGroups = useMemo(() => {
-    const likedUsers = SAMPLE_USERS.filter((u) => liked.includes(u.id));
-    const chunks = [];
-    for (let i = 0; i < likedUsers.length; i += 4) {
-      chunks.push(likedUsers.slice(i, i + 4));
-    }
-    return chunks.map((chunk, idx) => ({
-      id: `g${idx + 1}`,
-      name: `Suggested Circle ${idx + 1}`,
-      memberIds: chunk.map((u) => u.id),
-    }));
-  }, [liked, SAMPLE_USERS]);
+  const likedUsers = SAMPLE_USERS.filter((u) => liked.includes(u.id));
+  const chunks = [];
+  for (let i = 0; i < likedUsers.length; i += 4) {
+    chunks.push(likedUsers.slice(i, i + 4));
+  }
+
+  function generateGroupName(members) {
+  // Gather all interests across members
+  const allInterests = members.flatMap((u) => u.interests.map((i) => i.name));
+  const counts = {};
+
+  for (const i of allInterests) counts[i] = (counts[i] || 0) + 1;
+
+  // Sort by frequency and pick the top 1–2 shared interests
+  const sorted = Object.entries(counts)
+    .sort((a, b) => b[1] - a[1])
+    .map(([name]) => name);
+
+  const top = sorted.slice(0, 2);
+
+  // ✨ Pool of possible endings to make names more dynamic
+  const endings = ["Crew", "Circle", "Collective", "Squad", "Society"];
+
+  // Randomly pick one ending
+  const ending = endings[Math.floor(Math.random() * endings.length)];
+
+  // Generate the base name
+  if (top.length === 0) return `Orbit ${ending}`;
+  if (top.length === 1) return `${top[0]} ${ending}`;
+  return `${top[0]} & ${top[1]} ${ending}`;
+}
+
+  return chunks.map((chunk, idx) => ({
+    id: `g${idx + 1}`,
+    name: generateGroupName(chunk),
+    memberIds: chunk.map((u) => u.id),
+  }));
+}, [liked, SAMPLE_USERS]);
+
 
   function createGroup(name, memberIds) {
     const id = `cg_${Date.now()}`;
@@ -203,7 +233,7 @@ function OrbitApp() {
 
   return (
     <div className="space-y-8">
-      <Header />
+      <Header onProfileClick={() => setPage("profile")}/>
 
       {page === "welcome" && (
         <Card>
@@ -378,16 +408,31 @@ function OrbitApp() {
             <div className="text-center py-10 opacity-80">No profiles match your age range here yet. Try broadening it or pick another destination.</div>
           ) : (
             <MatchCard
-              user={eligibleUsers[Math.min(matchIndex, eligibleUsers.length - 1)]}
-              userInterests={selectedInterests}
-              onMatch={() => {
-                const id = eligibleUsers[Math.min(matchIndex, eligibleUsers.length - 1)].id;
-                if (!liked.includes(id)) setLiked([...liked, id]);
-                setMatchIndex((i) => Math.min(i + 1, eligibleUsers.length - 1));
-              }}
-              onSkip={() => setMatchIndex((i) => Math.min(i + 1, eligibleUsers.length - 1))}
-              onEnd={() => setPage("groups")}
-            />
+  user={eligibleUsers[matchIndex]}
+  userInterests={selectedInterests}
+  total={eligibleUsers.length}
+  index={matchIndex}
+  onMatch={() => {
+    const id = eligibleUsers[matchIndex].id;
+    if (!liked.includes(id)) setLiked([...liked, id]);
+
+    // Move to next or auto-advance
+    if (matchIndex + 1 >= eligibleUsers.length) {
+      setPage("groups");
+    } else {
+      setMatchIndex((i) => i + 1);
+    }
+  }}
+  onSkip={() => {
+    if (matchIndex + 1 >= eligibleUsers.length) {
+      setPage("groups");
+    } else {
+      setMatchIndex((i) => i + 1);
+    }
+  }}
+  onEnd={() => setPage("groups")}
+/>
+
           )}
           <div className="mt-4 text-sm opacity-70 text-right">
             {Math.min(matchIndex + 1, eligibleUsers.length)} / {eligibleUsers.length}
@@ -398,6 +443,12 @@ function OrbitApp() {
       {page === "groups" && (
         <Card title="Your Circles">
           <BackRow onBack={goBack} />
+
+          {/* 👥 View Members Button */}
+    <div className="flex justify-end mb-3">
+      <Button onClick={() => setPage("members")}>View Members</Button>
+    </div>
+
           <div className="grid md:grid-cols-[2fr,1fr] gap-6 pb-20">
             <div>
               <h3 className="font-semibold mb-2">Suggested groups</h3>
@@ -433,6 +484,7 @@ function OrbitApp() {
           </div>
         </Card>
       )}
+      
 
       {page === "chat" && (
         <Card title="Circle chat">
@@ -442,6 +494,7 @@ function OrbitApp() {
               group={(groups.length ? groups : suggestedGroups).find((g) => g.id === activeGroupId) || (groups.length ? groups[0] : suggestedGroups[0])}
               users={SAMPLE_USERS}
               messages={messages}
+              destination={destination} 
               onSend={(text) => {
                 const gid = activeGroupId || (groups[0]?.id || suggestedGroups[0]?.id);
                 handleSendMessage(gid, text);
@@ -450,6 +503,7 @@ function OrbitApp() {
             <BookingSidebar
               group={(groups.length ? groups : suggestedGroups).find((g) => g.id === activeGroupId) || (groups.length ? groups[0] : suggestedGroups[0])}
               users={SAMPLE_USERS}
+              destination={destination} 
               onInvite={(details) => {
                 const gid = activeGroupId || (groups[0]?.id || suggestedGroups[0]?.id);
                 handleInviteBooking(gid, details);
@@ -465,17 +519,26 @@ function OrbitApp() {
 /*****************
  * UI Components *
  *****************/
-function Header() {
+function Header({ onProfileClick }) {
   return (
     <div className="flex items-center justify-between">
       <div className="flex items-center gap-3">
         <div className="w-8 h-8 rounded-full bg-white/10 grid place-items-center">★</div>
         <span className="font-semibold tracking-wide">ORBIT</span>
       </div>
-      <div className="text-xs opacity-70">Prototype — Hackathon Demo</div>
+      <div className="flex items-center gap-3">
+        <div className="text-xs opacity-70">Prototype — Hackathon Demo</div>
+        <button
+          onClick={onProfileClick}
+          className="px-3 py-1 bg-white/10 hover:bg-white/20 rounded-lg text-sm"
+        >
+          👤 Profile
+        </button>
+      </div>
     </div>
   );
 }
+
 
 function Card({ title, children }) {
   return (
@@ -751,65 +814,170 @@ function TypingPrompt({ prompts }) {
 /***********************
  * Matching Card
  ***********************/
-function MatchCard({ user, userInterests, onMatch, onSkip, onEnd }) {
+/***********************
+ * Matching Card (Vertical Layout)
+ ***********************/
+function MatchCard({ user, userInterests, onMatch, onSkip, onEnd, total, index }) {
   if (!user) return null;
+
   const overlap = user.interests.filter((i) =>
     userInterests.some((ui) => ui.endsWith(i.name))
   );
 
   return (
-    <div className="grid md:grid-cols-2 gap-6">
-      <div className="space-y-3">
-        <div className="w-full aspect-video bg-white/5 rounded-xl overflow-hidden">
-          <img src={user.photo} alt={user.name} className="w-full h-full object-cover" />
-        </div>
-        <div className="text-sm opacity-80">Destination: {user.destination}</div>
+    <div className="flex flex-col items-center text-center space-y-4">
+      {/* Image */}
+      <div className="w-full max-w-md aspect-video bg-white/5 rounded-xl overflow-hidden">
+        <img
+          src={user.photo}
+          alt={user.name}
+          className="w-full h-full object-cover"
+        />
       </div>
-      <div className="space-y-3">
-        <div className="flex items-end gap-3">
-          <h3 className="text-2xl font-bold">{user.name}</h3>
-          <span className="opacity-80">{user.age}</span>
-        </div>
-        <div className="text-sm opacity-90">"{user.bio}"</div>
-        <div>
-          <div className="text-sm font-medium mb-1">Shared interests</div>
-          {overlap.length > 0 ? (
-            <div className="flex flex-wrap gap-2">
-              {overlap.map((i) => (
-                <Chip key={i.name} selected>{i.emoji} {i.name}</Chip>
-              ))}
-            </div>
-          ) : (
-            <div className="text-sm opacity-70">No overlap yet — you might still vibe.</div>
-          )}
-        </div>
 
-        <div className="pt-4 flex gap-3">
-          <button onClick={onSkip} className="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20">← Skip</button>
-          <button onClick={onMatch} className="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20">→ Match</button>
-          <button onClick={onEnd} className="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20">✓ End Matching</button>
-        </div>
+      {/* Name + Age */}
+      <div>
+        <h3 className="text-2xl font-bold">{user.name}</h3>
+        <p className="text-sm opacity-80">{user.age}</p>
+        <p className="text-sm italic opacity-80 mt-1">"{user.bio}"</p>
+      </div>
+
+      {/* Shared Interests */}
+      <div>
+        <div className="text-sm font-medium mb-1">Shared interests</div>
+        {overlap.length > 0 ? (
+          <div className="flex flex-wrap justify-center gap-2">
+            {overlap.map((i) => (
+              <Chip key={i.name} selected>
+                {i.emoji} {i.name}
+              </Chip>
+            ))}
+          </div>
+        ) : (
+          <div className="text-sm opacity-70">
+            No overlap yet — you might still vibe.
+          </div>
+        )}
+      </div>
+
+      {/* Destination */}
+      <div className="text-sm opacity-80">
+        Destination: {user.destination}
+      </div>
+
+      {/* Buttons */}
+      <div className="pt-4 flex gap-3 justify-center">
+        <button
+          onClick={onSkip}
+          className="px-5 py-2 rounded-xl bg-white/10 hover:bg-white/20 transition"
+        >
+          ← Skip
+        </button>
+        <button
+          onClick={onMatch}
+          className="px-5 py-2 rounded-xl bg-white/10 hover:bg-white/20 transition"
+        >
+          ♥ Match
+        </button>
+        <button
+          onClick={onEnd}
+          className="px-5 py-2 rounded-xl bg-white/10 hover:bg-white/20 transition"
+        >
+          ✓ End Matching
+        </button>
+      </div>
+
+      {/* Progress Indicator */}
+      <div className="text-xs opacity-60">
+        {index + 1} / {total}
       </div>
     </div>
   );
 }
+
 
 /***********************
  * Groups & Chat
  ***********************/
 function GroupRow({ group, users, onJoin }) {
+  const [showMembers, setShowMembers] = useState(false);
+  const [selectedMember, setSelectedMember] = useState(null);
+
+  const groupMembers = group.memberIds
+    .map((id) => users.find((u) => u.id === id))
+    .filter(Boolean);
+
   return (
     <div className="bg-white/5 rounded-xl p-4 border border-white/10">
-      <div className="font-medium">{group.name}</div>
-      <div className="text-sm opacity-80 mt-1">
-        {group.memberIds.map((id) => users.find((u) => u.id === id)?.name).filter(Boolean).join(", ")}
+      <div className="flex justify-between items-center">
+        <div>
+          <div className="font-medium">{group.name}</div>
+          <div className="text-sm opacity-80 mt-1">
+            {groupMembers.map((u) => u.name).join(", ")}
+          </div>
+        </div>
+        <div className="flex gap-2">
+          <Button onClick={() => setShowMembers(!showMembers)}>
+            {showMembers ? "Hide Members" : "View Members"}
+          </Button>
+          <Button onClick={onJoin}>Join Group</Button>
+        </div>
       </div>
-      <div className="mt-3 text-right">
-        <Button onClick={onJoin}>Join group</Button>
-      </div>
+
+      {/* Expandable member list */}
+      {showMembers && (
+        <div className="mt-3 grid sm:grid-cols-2 gap-3">
+          {groupMembers.map((member) => (
+            <button
+              key={member.id}
+              onClick={() => setSelectedMember(member)}
+              className="text-left bg-white/10 hover:bg-white/20 rounded-xl p-2 transition"
+            >
+              <div className="font-semibold">{member.name}</div>
+              <div className="text-xs opacity-70">{member.age} — {member.destination}</div>
+            </button>
+          ))}
+        </div>
+      )}
+
+      {/* Tinder-style modal for a selected member */}
+      {selectedMember && (
+        <div className="fixed inset-0 bg-black/80 flex justify-center items-center z-50">
+          <div className="w-[320px] bg-white/5 rounded-2xl p-4 border border-white/10 text-center relative shadow-xl">
+            <button
+              className="absolute top-2 right-3 text-sm opacity-80 hover:opacity-100"
+              onClick={() => setSelectedMember(null)}
+            >
+              ✕
+            </button>
+            <img
+              src={selectedMember.photo}
+              alt={selectedMember.name}
+              className="w-full h-64 object-cover rounded-xl mb-3"
+            />
+            <h3 className="text-xl font-bold">{selectedMember.name}</h3>
+            <p className="text-sm opacity-80">{selectedMember.age}</p>
+            <p className="italic text-sm opacity-70 mt-1 mb-3">
+              "{selectedMember.bio}"
+            </p>
+            <div className="text-sm font-medium mb-1">Interests</div>
+            <div className="flex flex-wrap justify-center gap-2 mb-3">
+              {selectedMember.interests.map((i) => (
+                <Chip key={i.name} selected>
+                  {i.emoji} {i.name}
+                </Chip>
+              ))}
+            </div>
+            <div className="text-sm opacity-70">
+              Destination: {selectedMember.destination}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
+
 
 function CreateGroupForm({ likedUsers, onCreate }) {
   const [name, setName] = useState("My Circle");
@@ -838,8 +1006,77 @@ function CreateGroupForm({ likedUsers, onCreate }) {
   );
 }
 
-function ChatPanel({ group, users, messages, onSend }) {
+function ChatPanel({ group, users, messages, onSend, destination }) {
   const [text, setText] = useState("");
+  const [aiSuggestions, setAiSuggestions] = useState([]);
+  const [loadingAI, setLoadingAI] = useState(false);
+
+  async function handleAISuggestions() {
+  try {
+    setLoadingAI(true);
+
+    // Collect all interests from group members
+const allInterests = users
+  .filter((u) => group.memberIds.includes(u.id))
+  .flatMap((u) => u.interests.map((i) => i.name));
+
+// Find most common interests
+const freq = {};
+for (const interest of allInterests) {
+  freq[interest] = (freq[interest] || 0) + 1;
+}
+const sortedInterests = Object.keys(freq).sort((a, b) => freq[b] - freq[a]);
+
+// Only take top 3 shared interests to personalize recommendations
+const commonInterests = sortedInterests.slice(0, 3);
+
+// Use the group's theme as the AI focus
+const groupTheme = group.name.replace(/Circle|Crew|Squad|Collective|Voyagers/gi, "").trim();
+
+// Pass groupTheme + destination to Gemini
+const text = await getActivitySuggestions([groupTheme], destination);
+
+
+
+const lines = text.split("\n").filter((line) => line.trim());
+const parsedSuggestions = [];
+
+for (const line of lines) {
+  // Match patterns like:
+  // 1. **The Ritz-Carlton, Tokyo – Traditional Japanese Tea Ceremony Experience**: Description...
+  const match = line.match(/^\d+\.\s*\*\*(.*?)\s*[–-]\s*(.*?)\*\*\s*[:\-]\s*(.*)$/);
+
+  if (match) {
+    const [, property, experience, desc] = match;
+    parsedSuggestions.push({
+      property: property.trim(),
+      experience: experience.trim(),
+      description: desc.trim(),
+      expanded: false,
+    });
+  } else {
+    // Fallback: if it doesn’t match perfectly, still show something
+    const parts = line.split(":");
+    parsedSuggestions.push({
+      property: "Marriott Experience",
+      experience: parts[0].replace(/^\d+\.\s*/, "").trim(),
+      description: parts[1] ? parts[1].trim() : "",
+      expanded: false,
+    });
+  }
+}
+setAiSuggestions(parsedSuggestions);
+
+
+
+  } catch (err) {
+    console.error("AI suggestions failed:", err);
+    setAiSuggestions(["Could not fetch suggestions. Please check your connection or API key."]);
+  } finally {
+    setLoadingAI(false);
+  }
+}
+
   const ref = useRef(null);
 
   const groupMessages = messages.filter((m) => m.groupId === group?.id);
@@ -874,24 +1111,136 @@ function ChatPanel({ group, users, messages, onSend }) {
         />
         <Button onClick={() => { if (text.trim()) { onSend(text.trim()); setText(''); } }}>Send</Button>
       </div>
+      {/* ✨ AI Activity Suggestions Section */}
+<hr className="my-4 border-white/10" />
+<div className="mt-2">
+  <Button onClick={handleAISuggestions} disabled={loadingAI}>
+  {loadingAI
+    ? "Generating ideas..."
+    : aiSuggestions.length > 0
+    ? "🔁 Generate New Ideas"
+    : "✨ AI Activity Suggestions"}
+</Button>
+
+
+  {aiSuggestions.length > 0 && (
+  <div className="mt-3 bg-white/5 rounded-xl p-3 border border-white/10">
+    <p className="font-medium mb-3 opacity-90">Recommended for your group:</p>
+
+    {aiSuggestions.map((item, i) => {
+      // Skip if this is the intro text (like "Here are 5 Marriott Bonvoy experiences...")
+      if (item.experience.toLowerCase().startsWith("here are")) {
+        return (
+          <p key={i} className="text-sm text-gray-300 mb-3 italic">
+            {item.experience}
+          </p>
+        );
+      }
+
+      return (
+        <div key={i} className="mb-3">
+          {/* Main button with gradient */}
+          <button
+            onClick={() =>
+              setAiSuggestions((prev) =>
+                prev.map((s, j) =>
+                  j === i ? { ...s, expanded: !s.expanded } : s
+                )
+              )
+            }
+            className="w-full text-left text-sm font-semibold bg-gradient-to-r from-[#1e3a8a]/40 to-[#6b7280]/40 hover:from-[#2563eb]/60 hover:to-[#9ca3af]/60 transition-all duration-300 rounded-lg px-3 py-2 text-white"
+          >
+            {item.experience}
+          </button>
+
+          {/* Animated expanded section */}
+          {item.expanded && (
+            <div
+              className="mt-2 text-sm bg-white/10 p-3 rounded-lg animate-fadeIn border border-white/10"
+              style={{
+                animation: "fadeIn 0.3s ease-out",
+              }}
+            >
+              <p className="font-bold">{item.property}</p>
+              <p className="opacity-80 mt-1 mb-3">{item.description}</p>
+
+              <Button
+                size="sm"
+                className="mt-2 bg-gradient-to-r from-[#dc2626] to-[#b91c1c] hover:from-[#ef4444] hover:to-[#991b1b] text-white transition-all"
+                onClick={() =>
+                  onSend(
+                    `📍 *${item.experience}* at ${item.property}\n${item.description}`
+                  )
+                }
+              >
+                Share to Group Chat
+              </Button>
+            </div>
+          )}
+        </div>
+      );
+    })}
+  </div>
+)}
+
+
+
+
+</div>
+
     </div>
   );
 }
 
-function BookingSidebar({ group, users, onInvite }) {
+
+function BookingSidebar({ group, users, destination, onInvite }) {
   const [type, setType] = useState("Spa");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [partySize, setPartySize] = useState(2);
 
-  if (!group) return null; 
+  const [aiSuggestions, setAiSuggestions] = useState([]);
+  const [loadingAI, setLoadingAI] = useState(false);
+  const [ideasGenerated, setIdeasGenerated] = useState(false);
+
+
+  async function handleAISuggestions() {
+    setAiSuggestions([]);
+    setLoadingAI(true);
+
+    const allInterests = users
+      .filter((u) => group.memberIds.includes(u.id))
+      .flatMap((u) => u.interests.map((i) => i.name));
+
+    const uniqueInterests = [...new Set(allInterests)];
+
+    try {
+      const text = await getActivitySuggestions(uniqueInterests, destination);
+      setAiSuggestions(text.split("\n").filter(Boolean));
+    } catch (err) {
+      console.error("Gemini error:", err);
+      setAiSuggestions(["Error fetching AI suggestions."]);
+    } finally {
+      setLoadingAI(false);
+    }
+  }
+
+  if (!group) return null;
 
   return (
     <div className="bg-white/5 rounded-xl p-4 border border-white/10">
       <div className="font-semibold mb-2">Book a Marriott experience</div>
-      <label className="block text-sm mb-2">
+
+      <div className="mt-4">
+      </div>
+
+      <label className="block text-sm mb-2 mt-4">
         <span className="opacity-80">Amenity</span>
-        <select value={type} onChange={(e) => setType(e.target.value)} className="mt-1 w-full px-3 py-2 bg-white/10 rounded-xl">
+        <select
+          value={type}
+          onChange={(e) => setType(e.target.value)}
+          className="mt-1 w-full px-3 py-2 bg-white/10 rounded-xl"
+        >
           <option>Spa</option>
           <option>Restaurant</option>
           <option>Wellness Class</option>
@@ -899,11 +1248,18 @@ function BookingSidebar({ group, users, onInvite }) {
           <option>Co-working Day Pass</option>
         </select>
       </label>
+
       <div className="grid grid-cols-2 gap-2">
         <LabeledInput label="Date" type="date" value={date} onChange={setDate} />
         <LabeledInput label="Time" type="time" value={time} onChange={setTime} />
       </div>
-      <LabeledInput label="Party size" type="number" value={String(partySize)} onChange={(v) => setPartySize(Number(v))} />
+
+      <LabeledInput
+        label="Party size"
+        type="number"
+        value={String(partySize)}
+        onChange={(v) => setPartySize(Number(v))}
+      />
 
       <div className="mt-3 text-right">
         <Button
@@ -915,10 +1271,14 @@ function BookingSidebar({ group, users, onInvite }) {
           Invite group
         </Button>
       </div>
-      <div className="mt-3 text-xs opacity-70">(Demo) This sends a message to the chat and simulates a booking invite. In production, connect to Marriott booking APIs.</div>
+
+      <div className="mt-3 text-xs opacity-70">
+        (Demo) This sends a message to the chat and simulates a booking invite.
+      </div>
     </div>
   );
 }
+
 
 /***********************
  * Data & Generators
@@ -992,12 +1352,14 @@ function randomBio() {
 function generateSampleUsers(destinations, interests) {
   const users = [];
   let id = 1;
+
   for (const d of destinations) {
-    for (let k = 0; k < 3; k++) {
-      const age = 18 + Math.floor(Math.random() * 48); // 18-65
-      // pick 5 to 8 interests randomly
+    // Create 30 users per destination
+    for (let k = 0; k < 30; k++) {
+      const age = 18 + Math.floor(Math.random() * 48); // 18–65
       const shuffled = [...interests].sort(() => Math.random() - 0.5);
-      const picks = shuffled.slice(0, 5 + Math.floor(Math.random() * 4));
+      const picks = shuffled.slice(0, 5 + Math.floor(Math.random() * 4)); // 5–8 interests
+
       users.push({
         id: `u${id++}`,
         name: randomName(),
@@ -1009,5 +1371,7 @@ function generateSampleUsers(destinations, interests) {
       });
     }
   }
+
   return users;
 }
+
