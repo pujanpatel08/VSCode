@@ -1,0 +1,3 @@
+Number Representation
+
+A bit, binary digit, is a smallest unit of computer memory
