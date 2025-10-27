@@ -1,0 +1,55 @@
+
+Numeric Bases
+
+What base do we (humans) generally use?
+10
+
+What base computers generally use?
+2 aka binary
+
+In base 10, there are 10 digits we use
+0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+
+In base 2, there are 2 binary digits we use
+0, 1
+
+Binary digit is often combined as bit
+
+8 bits is called a byte
+4 bits is called a nybble
+
+
+In decimal numbers are made up of the digits times a power of 10
+
+For example
+
+341 is 3 * 100 + 4 * 10 + 1 
+	or
+       3 *10^2 + 4*10^1 + 1*10^0
+
+
+
+
+
+101010101 is a binary number
+
+1*2^8 + 0*2^7 + 1*2^6 + 0*2^5 + 1*2^4 + 0*2^3 + 1*2^2 + 0*2^1 + 1*2^0
+256 + 64 + 16 + 4 + 1 = 341
+
+2|341
+ |170 1
+ | 85 0
+ | 42 1
+ | 21 0
+ | 10 1
+ |  5 0
+ |  2 1
+ |  1 0
+ |  0 1
+
+To convert decimal to binary, repeated divide the decimal number by
+2, keeping the quotient and remainder
+stop when the dividend is 0
+read the remainders in reverse order to get the binary number
+
+

@@ -1,0 +1,128 @@
+
+October 7
+
+Notes on Arrays
+
+We talked about making arrays last time.
+
+We make them statically or dynamically
+
+int array[10]; //static allocation
+
+int* array = malloc( 10 * sizeof(int) ); //dynamic allocation
+
+Identifier Attributes
+
+When we create identifiers in C, they have attributes.
+
+What is an identifier?
+
+Scope: Scope is where it is legal to refer to an identifier.
+
+We have a few different kinds of scope.
+
+1. Global scope. For variables, this is evil. Ew
+		 For functions, this is good, Yum
+		 For constants, fantastic, do this all day
+		 For structs, same
+
+		 Global scope is when we are outside of any
+		 function definitions.
+
+		 int x;//global
+		 int main()
+		 {
+		 	//not global
+		 }
+2. Local scope
+	This is when we declare a variable inside of a function.
+
+	void function()
+	{
+		int x; //local variable
+	}
+
+
+Lifetime: How long a variable stays in memory
+
+We have two kinds of lifetimes.
+
+1. Automatic 
+	when we enter a scope, aka a function, local variables
+	are created, used and then cleaned up when the function
+	ends.
+
+2. Static 
+	these extend their lifetime for the duration of the program.
+	They can include global variables
+	Static variables are stored in different locations in memory
+	from our automatic variables.
+
+	int function()
+	{
+		static int x = 8;
+		//the first time the function is entered
+		//x is given the value 8
+		//subsequent calls to function x will retain 
+		//the value from previous calls.
+		x = x + 1;
+	}
+
+Linkage
+
+In C we have various ways that identifiers can be linked
+
+3 types of linkage
+
+1. External linkage
+	these are global variables, and variables
+	that are declared as extern.
+
+	extern int errno;
+
+2. Internal Linkage
+	Functions, or variables, that are limited in scope
+	to the file they are declared in.
+
+	static int x;
+	static void function();
+
+	int main()
+	{
+	}
+
+3. No linkage
+	Local variables
+	
+
+Pointers
+
+A pointer is a variable that stores a memory address.
+
+Declaring pointers
+
+data-type * name;
+
+int * x;
+
+It does not matter if the * is on the data type, the name, neither, or both
+
+To access the target of the pointer, that is the thing the pointer
+points to, we need to dereference the pointer
+
+*x = 7; this would update the target of x to be 7
+
+We can store NULL is a pointer to set it to nothing
+
+x = NULL; //null is generally 0, but does not need to be
+
+//can we do this
+
+int *x = 7;// this would assign the address 7 to the pointer.
+
+
+
+
+
+
+

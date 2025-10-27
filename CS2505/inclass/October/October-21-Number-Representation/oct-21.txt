@@ -1,0 +1,155 @@
+Number Representation
+
+A bit, binary digit, is a smallest unit of computer memory
+A bit can be 0 or 1
+8 bits is called a byte
+4 bits is called a nybble
+
+Our machines can address an individual byte
+Our machines use a 64-bit, or 8 byte, address.
+	This means that pointers are 8 bytes long.
+binary  decimal hex
+0000	0	0
+0001	1	1
+0010	2	2
+0011	3	3
+0100	4	4
+0101	5	5
+0110	6	6
+0111	7	7
+1000	8	8
+1001	9	9
+1010	10	A
+1011	11	B
+1100	12	C
+1101	13	D
+1110	14	E
+1111	15	F
+
+In 4 bits, we have 16 patterns. 
+4^2 = 16
+2^2^2 = 16
+2^4 = 16
+Range 0 - 15 
+2^5 = 32
+2^6 = 64
+2^7 = 128
+2^8 = 256
+Range 0 - 255 
+
+Converting Hex to Binary
+
+0x3B0
+
+2 ways to convert to decimal
+
+1. Convert to binary first
+   then do powers of 2
+2. Multiply the coefficient by the power of 16
+
+  98 7654 3210
+0011 1011 0000
+
+2^9 + 2^8 + 2^7 + 2^5 + 2^4 = 
+512 + 256 + 128 + 32 + 16 = 944
+
+  210
+0x3B0
+3*16^2 + 11*16 = 944 
+
+Integers in C
+
+On our machines an int in C is 4 bytes
+That means we have 2^32 patterns.
+
+2^32 = 4,294,967,296 
+
+The range then is 0 - 2^32 -1 or
+0 - 4,294,967,295
+
+This range is true if we have unsigned integers.
+
+unsigned int x; 
+
+If we have signed numbers
+
+-2,147,483,648 - 2,147,483,647
+
+int x; 
+
+Negative representation 
+
+2's compliment
+
+In computers, we have agreed to use a form known as 
+2's compliment
+
+When we have a signed number, or a number that could be
+positive or negative, the left most bit, or the most
+significant bit represents whether the number is
+positive or negative.
+If the bit is 0, it is positive
+If the bit is 1, it is negative
+
+42 in decimal
+is 
+0010 1010 - in binary 
+
+-41 in decimal
+is
+1101 0110 in binary 
+
+How did I get this?
+
+We take the binary.
+Flip all of the bits.
+	That is, the 0s become 1s
+	and the 1s become 0s
+Then we add 1.
+
+
+
+	0010 1010 - og binary
+               1  - carry
+	1101 0101 - flipped bits
+       +        1
+       ----------
+        1101 0110
+
+On an exam, we might ask a question like,
+        1101 0110
+Assuming the bits above are unsigned, what is the value?
+2^7 + 2^6 + 2^4 + 2^2 + 2^1
+128+64+16+4+2 = 214
+Assuming the bits above are signed, what is the value?
+
+        1101 0110 - og
+	
+               1 = carry
+	0010 1001
+       +        1
+       ----------
+        0010 1010
+
+	0010 1010 - flipped and add 1
+	2^5 + 2^3 + 2^1
+	32 + 8 + 2 = 42
+	Answer is -42
+
+	0010 1011 = 43
+
+	1101 0100
+	
+	1101 0101 = -43 
+
+	If we are converting from signed binary
+	and the left most bit is a 0, then all
+	you do is do the powers of 2
+
+	If the leftmost bit is a 1, then we 
+	flip the bits, add 1, and then we do the
+	powers of 2 and the final answer we 
+	add a - to the front.
+
+	
+

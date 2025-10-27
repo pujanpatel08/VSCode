@@ -1,0 +1,52 @@
+Arrays
+
+An array is a continuous block of memory that is accessed via
+a single identifier
+
+-Elements, or data, in the array are stored at index positions
+-The data is all of the same type.
+-The first index is 0 and the last index is one less than
+	the dimension, or size, of the array 
+-All arrays are fixed in size
+
+We can create arrays in two ways
+
+1. Statically
+2. Dynamically
+
+Static arrays are ones that are fixed from the declaration through run time.
+
+int array[10];
+
+we must declare the array with a constant for the size
+
+#define SIZE 10
+int array[SIZE];
+
+array[0] = 10;
+array[9] = 1000;
+array[10] is invalid
+int x = array[5];
+
+Dynamically allocated array use a pointer
+They do not need a constant when they are declared
+Dynamic arrays can be retargeted, since the pointer is used
+this means we can resize the array as we needed.
+
+int size = 8;
+int* array;
+
+array = malloc( size * sizeof(int) );
+this will make an array of 32 bytes, or it will hold 8 ints
+malloc - memory allocation, will not initialize your memory
+
+alternative way
+
+array = calloc( size, sizeof(int) );
+calloc - clear allocation, will initialize the memory to 0
+it takes 2 parameters
+
+
+
+
+

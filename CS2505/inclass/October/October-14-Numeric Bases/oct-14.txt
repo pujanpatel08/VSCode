@@ -1,0 +1,54 @@
+Numeric Bases continued
+
+We use a base to represent a number.
+We are used to the decimal base as humans, base 10
+Computers use base 2 or binary
+
+A binary digit, or a bit, is a 0 or 1
+
+1111 1111 (base 2)
+100 110 (base 3)
+3333 (base 4)
+2010 (base 5)
+377 (base 8)
+FF (base 16)
+
+All of these are the same number, 256, base 10.
+
+Interpretation of the bits in a byte matter
+There are 8 bits in a byte.
+
+We talked about how to convert decimal to binary.
+
+We can take the value, repeatedly divide that value and
+resulting quotients by 2 until the dividend becomes 0
+
+For example
+73901
+
+
+Pointer Constness
+
+This is weird.
+
+int * ptr;  // ptr is a pointer to(*) an int
+everything here is changeable
+
+int * const ptr; // ptr is constant pointer to an int
+the target is changeable but the pointer is not
+This occurs when we pass an array to function
+arrays are "promoted" to be pointers, but where the array is, the pointer,
+cannot be changed, but the data in the array can.
+
+const int * ptr; // ptr is a pointer to a int that is constant
+the pointer is changeable but the target is not
+const int x = 10;
+const int y = 11;
+const int* ptr = &x;
+
+const int * const ptr; // ptr is a constant pointer to a constant int
+nothing is changeable
+
+These are all different in how and what is constant
+
+https://abstractexpr.com/2023/04/03/const-pointers-and-pointers-to-const-values-in-c/
