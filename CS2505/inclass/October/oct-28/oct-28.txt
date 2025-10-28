@@ -1,0 +1,15 @@
+When we have a mutli byte value, either the low ednded byte or high ended byte is stored first
+
+Low ended bytes are on the right of the number
+High ended bytes are on the left of the number
+
+0x12AB34CD
+
+0x12 are the high bytes
+0xCD are the low bytes
+
+High bytes add more value to the number
+Low bytes add less value to the number
+
+e.g. 1 vs 10. Which 1 adds more value
+1 vs 10000. Which 1 adds more value
